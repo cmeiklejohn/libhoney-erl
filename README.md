@@ -1,5 +1,7 @@
 # libhoney-erl
 
+[![Build Status](https://travis-ci.org/cmeiklejohn/libhoney-erl.svg?branch=master)](https://travis-ci.org/cmeiklejohn/libhoney-erl)
+
 Erlang library for sending events to [Honeycomb](https://honeycomb.io/).
 
 Note: this library is not fully featured yet, and only implements the
