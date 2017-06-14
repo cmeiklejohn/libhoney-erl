@@ -11,6 +11,10 @@
 
 -define(SERVER, ?MODULE).
 
+-define(CHILD(I, Type, Timeout),
+        {I, {I, start_link, []}, permanent, Timeout, Type, [I]}).
+-define(CHILD(I, Type), ?CHILD(I, Type, 5000)).
+
 %%====================================================================
 %% API functions
 %%====================================================================
@@ -24,7 +28,13 @@ start_link() ->
 
 %% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
 init([]) ->
-    {ok, { {one_for_all, 0, 1}, []} }.
+    Children = lists:flatten(
+                 [
+                 ?CHILD(libhoney_dispatcher, worker)
+                 ]),
+
+    RestartStrategy = {one_for_one, 10, 10},
+    {ok, {RestartStrategy, Children}}.
 
 %%====================================================================
 %% Internal functions

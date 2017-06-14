@@ -6,12 +6,13 @@
   {applications,
    [kernel,
     stdlib,
+    ssl,
+    jsx,
     inets
    ]},
   {env,[]},
   {modules, []},
-
-  {maintainers, []},
+  {maintainers, ["Christopher S. Meiklejohn"]},
   {licenses, []},
   {links, []}
  ]}.

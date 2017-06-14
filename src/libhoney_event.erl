@@ -3,27 +3,41 @@
 
 -export([new/0, add/3, send/1]).
 
+%% @doc Generate a new event.
 new() ->
-    TeamWritekey = libhoney_config:get(team_writekey),
-    Dataset = libhoney_config:get(dataset),
-    APIHost = libhoney_config:get(apihost),
-    SampleRate = libhoney_config:get(sample_rate),
+    TeamWritekey = libhoney_config:get(team_writekey, undefined),
+    case TeamWritekey of
+        undefined ->
+            exit({error, no_team_writekey_configured});
+        _ ->
+            ok
+    end,
+
+    Dataset = libhoney_config:get(dataset, undefined),
+    case Dataset of
+        undefined ->
+            exit({error, no_dataset_configured});
+        _ ->
+            ok
+    end,
+
+    APIHost = libhoney_config:get(apihost, <<"https://api.honeycomb.io">>),
+    SampleRate = libhoney_config:get(sample_rate, 1),
     Timestamp = timestamp(),
 
-    #{"team_writekey" => TeamWritekey,
-      "dataset" => Dataset,
-      "apihost" => APIHost,
-      "sample_rate" => SampleRate,
-      "timestamp" => Timestamp}.
+    #{<<"team_writekey">> => TeamWritekey,
+      <<"dataset">> => Dataset,
+      <<"apihost">> => APIHost,
+      <<"sample_rate">> => SampleRate,
+      <<"timestamp">> => Timestamp}.
 
-add(Key, Value, Event) ->
+%% @doc Add a field to the event.
+add(Key, Value, Event) when is_binary(Key) ->
     Event#{Key => Value}.
 
-%% TODO: Sampling happens in the send() function - if the Sample Rate is
-%% an integer greater than 1, send() should only send events with a
-%% probability of 1/Sample Rate.
-send(_Event) ->
-    {error, not_implemented}.
+%% @doc Send a event to the API endpoint.
+send(Event) ->
+    libhoney_dispatcher:send(Event).
 
 %% @private
 timestamp() ->
