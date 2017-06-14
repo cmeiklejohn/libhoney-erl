@@ -1,9 +1,16 @@
-libhoney
-=====
+# libhoney-erl
 
-An OTP application
+## Configure your application environment.
 
-Build
------
+```
+{libhoney,
+  [{team_writekey, <<"YOUR_WRITEKEY">>},
+   {dataset, <<"YOUR_DATASET">>]}.
+```
 
-    $ rebar3 compile
+## Create an event.
+
+```
+Event = libhoney_event:new(),
+ok = libhoney_event:send(Event).
+```
