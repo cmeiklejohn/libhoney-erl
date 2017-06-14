@@ -4,7 +4,11 @@ Erlang library for sending events to [Honeycomb](https://honeycomb.io/).
 
 ## Installation
 
-Coming soon.
+Add a dependency in your ```rebar.config``` file.
+
+```erlang
+{deps, [{libhoney, {git, "https://github.com/cmeiklejohn/libhoney.git", {branch, "master"}}}]}.
+```
 
 ## Example
 
