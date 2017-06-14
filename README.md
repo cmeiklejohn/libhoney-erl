@@ -11,7 +11,7 @@ Coming soon.
 First, configure your application environment with the key and dataset
 information.
 
-```
+```erlang
 {libhoney,
   [{team_writekey, <<"YOUR_WRITEKEY">>},
    {dataset, <<"YOUR_DATASET">>]}.
@@ -19,7 +19,7 @@ information.
 
 Then, create and dispatch an event to Honeycomb.
 
-```
+```erlang
 Event = libhoney_event:add(<<"my_custom_attribute">>, 2, libhoney_event:new()),
 ok = libhoney_event:send(Event).
 ```
