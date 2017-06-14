@@ -1,6 +1,8 @@
 # libhoney-erl
 
-## Configure your application environment.
+## Usage
+
+### Configure your application environment.
 
 ```
 {libhoney,
@@ -8,7 +10,7 @@
    {dataset, <<"YOUR_DATASET">>]}.
 ```
 
-## Create an event.
+### Create an event.
 
 ```
 Event = libhoney_event:new(),
