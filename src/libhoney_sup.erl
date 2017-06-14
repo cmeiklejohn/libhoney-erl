@@ -1,9 +1,5 @@
-%%%-------------------------------------------------------------------
-%% @doc libhoney top level supervisor.
-%% @end
-%%%-------------------------------------------------------------------
-
 -module(libhoney_sup).
+-author("Christopher S. Meiklejohn <christopher.meiklejohn@gmail.com>").
 
 -behaviour(supervisor).
 

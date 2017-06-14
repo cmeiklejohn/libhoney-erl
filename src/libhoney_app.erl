@@ -1,9 +1,5 @@
-%%%-------------------------------------------------------------------
-%% @doc libhoney public API
-%% @end
-%%%-------------------------------------------------------------------
-
 -module(libhoney_app).
+-author("Christopher S. Meiklejohn <christopher.meiklejohn@gmail.com>").
 
 -behaviour(application).
 
