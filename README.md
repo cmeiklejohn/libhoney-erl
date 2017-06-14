@@ -20,7 +20,7 @@ information.
 Then, create and dispatch an event to Honeycomb.
 
 ```
-Event = libhoney_event.add(<<"my_custom_attribute">>, 2, libhoney_event:new()),
+Event = libhoney_event:add(<<"my_custom_attribute">>, 2, libhoney_event:new()),
 ok = libhoney_event:send(Event).
 ```
 
