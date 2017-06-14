@@ -2,6 +2,9 @@
 
 Erlang library for sending events to [Honeycomb](https://honeycomb.io/).
 
+Note: this library is not fully featured yet, and only implements the
+minimal requirements as specified here in the [SDK Spec](https://honeycomb.io/docs/reference/sdk-spec/).
+
 ## Installation
 
 Add a dependency in your ```rebar.config``` file.
