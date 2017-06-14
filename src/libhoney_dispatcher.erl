@@ -10,6 +10,8 @@
 
 -behavior(gen_server).
 
+-include("libhoney.hrl").
+
 %% API
 -export([start_link/0,
          blocking_send/1,
@@ -103,14 +105,11 @@ internal_send(#{<<"team_writekey">> := TeamWritekey,
                {"X-Honeycomb-Team", binary_to_list(TeamWritekey)},
                {"X-Honeycomb-Event-Time", integer_to_list(Timestamp)},
                {"X-Honeycomb-Samplerate", integer_to_list(SampleRate)},
-               {"User-Agent", "libhoneycomb-erl/0.0.1"}],
+               {"User-Agent", "libhoneycomb-erl" ++ ?VERSION}],
 
     Options = [{ssl,[{verify,0}]}],
 
     Profile = [],
-
-    %% Enable trace options.
-    % httpc:set_options([{verbose, trace}]),
 
     %% Dispatch the event.
     {ok, _Response} = httpc:request(post,
